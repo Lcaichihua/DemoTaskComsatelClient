@@ -1,0 +1,109 @@
+  <!--  <div style="margin:auto;max-width:300px">
+  <p>Details:</p>
+  <form class="example" [formGroup]="myform" (ngSubmit)="onSubmit()">
+  <input type="hidden" formControlName="id" name="id">
+  <input type="text" formControlName="name" placeholder="Name" name="name">
+  <input type="number" formControlName="age" placeholder="Age" name="age">
+  <input type="text" maxlength="1" minlength="1" formControlName="gender" placeholder="Gender" name="gender">
+  <input type="text" formControlName="address" placeholder="Address.." name="address">
+  <button type="submit"><i class="fa fa-search"></i>Save</button>
+  </form>
+</div>-->
+
+
+
+<div class="container" >
+
+  <div id="fondo" class="col-md-6 offset-md-3">
+  <p class="text-center " >Comsatel Basic ToDo</p>
+  <p >Tareas</p>
+  <form class="example form-row" [formGroup]="myform" (ngSubmit)="onSubmit()">
+    <div class="col-md-6" >
+      <input type="hidden" formControlName="idTask" name="idTask">
+      <input type="text" class="form-control" id="desc"  formControlName="description" placeholder="Task" name="description">
+
+
+
+
+    </div >
+    <div class="col">
+
+    <button type="submit" class="btn btn-primary mb-2"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+    </svg>Agregar</button>
+  </div>
+  </form>
+  <hr>
+  <div class="row">
+
+  <table class="table table-hover" >
+    <thead>
+
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of data">
+        <td >
+
+          <div class="form-check" *ngIf="item.state==true ,else templateName">
+            <input class="form-check-input position-static"  checked type="checkbox" id="blankCheckbox" value="option1" aria-label="..." (change)="onChangeTask(item)">
+          </div>
+
+          <ng-template #templateName>
+            <div class="form-check">
+            <input class="form-check-input position-static"  type="checkbox" id="blankCheckbox" value="option1" aria-label="..." (change)="onChangeTask(item)">
+            </div>
+          </ng-template>
+
+      </td>
+
+      <td style="color: white;">{{item.description}}</td>
+        <td>
+        <button type="button" (click)="editData(item)"  class="btn btn-light"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+          <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+        </svg></button>
+      </td>
+      <td>
+        <button type="button" (click)="deleteById(item.idTask)"   class="btn btn-light"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+          <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+        </svg></button>
+
+
+
+      </td>
+
+
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+</div>
+
+</div>
+
+
+
+
+<!--
+<table>
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Age</th>
+    <th>Gender</th>
+    <th>Address</th>
+    <th>Edit</th>
+    <th>Delete</th>
+  </tr>
+  <tr *ngFor="let item of data">
+    <td>{{item.idTask}}</td>
+    <td>{{item.description}}</td>
+    <td>{{item.state}}</td>
+    <td>{{item.gender}}</td>
+    <td>{{item.address}}</td>
+    <td><button (click)="editData(item)">Edit</button></td>
+    <td><button (click)="deleteUserById(item.id)">Delete</button></td>
+  </tr>
+</table>-->
